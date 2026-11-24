@@ -1,0 +1,7 @@
+{
+  "games": [
+    { "slug": "odd-one-out", "repo": "https://github.com/JohnGarrisonDev/odd-one-out" },
+    { "slug": "wonky-putt", "repo": "https://github.com/JohnGarrisonDev/wonky-putt" },
+    { "slug": "blinkwire", "repo": "https://github.com/JohnGarrisonDev/blinkwire" }
+  ]
+}

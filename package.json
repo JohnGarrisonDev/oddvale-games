@@ -1,0 +1,22 @@
+{
+  "name": "oddvale-games",
+  "private": true,
+  "version": "1.0.0",
+  "type": "module",
+  "description": "games.oddvale.com: the hub that lists and hosts Oddvale's AI-made browser games.",
+  "scripts": {
+    "build": "node scripts/build.mjs",
+    "build:local": "node scripts/build.mjs --local",
+    "serve": "node scripts/serve.mjs dist 4173",
+    "check": "node scripts/check.mjs",
+    "art": "node scripts/art.mjs",
+    "deploy": "npm run build && npm run check && node scripts/cf.mjs pages deploy dist --project-name oddvale-games --branch main --commit-dirty=true"
+  },
+  "devDependencies": {
+    "sharp": "^0.35.5",
+    "wrangler": "^4.145.0"
+  },
+  "engines": {
+    "node": ">=22.12.0"
+  }
+}

@@ -1,0 +1,135 @@
+<!doctype html>
+<!-- games.oddvale.com home page. The double-brace placeholders are filled by scripts/build.mjs from each game's game.json. -->
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <title>Oddvale Games — browser games made by AI</title>
+  <meta name="description" content="Free browser games designed, built and updated by AI. No downloads, no sign-up, no ads. Every game is open source, so you can watch it change." />
+  <link rel="canonical" href="https://games.oddvale.com/" />
+  <meta name="theme-color" content="#17131f" />
+  <link rel="icon" href="favicon.svg" type="image/svg+xml" />
+  <link rel="icon" href="favicon-32.png" sizes="32x32" type="image/png" />
+  <link rel="apple-touch-icon" href="apple-touch-icon.png" />
+  <link rel="manifest" href="site.webmanifest" />
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="Oddvale Games" />
+  <meta property="og:title" content="Oddvale Games — browser games made by AI" />
+  <meta property="og:description" content="Free browser games designed, built and updated by AI. No downloads, no sign-up, no ads." />
+  <meta property="og:url" content="https://games.oddvale.com/" />
+  <meta property="og:image" content="https://games.oddvale.com/og-image.png" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:image:alt" content="An open-air arcade in a valley at night, with odd little robots playing arcade cabinets under string lights." />
+  <meta name="twitter:card" content="summary_large_image" />
+  <link rel="preload" href="kit/fonts/fraunces-latin-full-normal.woff2" as="font" type="font/woff2" crossorigin />
+  <link rel="stylesheet" href="kit/shell.css" />
+  <link rel="stylesheet" href="hub.css" />
+  <script type="application/ld+json">{{JSON_LD}}</script>
+</head>
+<body>
+  <a class="skip" href="#games">Skip to the games</a>
+  <header class="topbar">
+    <div class="wrap">
+      <a class="logo" href="./" aria-label="Oddvale Games home">
+        <svg width="32" height="32" viewBox="0 0 64 64" aria-hidden="true"><circle cx="21" cy="22" r="13" fill="var(--orange)"/><circle cx="24.5" cy="24.5" r="5.2" fill="var(--ink)"/><circle cx="47" cy="19" r="5.5" fill="var(--ink)"/><path d="M9 41 32 57 55 41" fill="none" stroke="var(--ink)" stroke-width="7.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        <span class="word">oddvale <i>games</i></span>
+      </a>
+      <span class="spacer"></span>
+      <nav class="nav" aria-label="Main">
+        <a href="#games">Games</a>
+        <a href="#how">How it works</a>
+        <a href="https://oddvale.com">oddvale.com</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="wrap">
+        <div>
+          <span class="eyebrow"><svg class="spark" width="14" height="14" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 0c1 7 4 10 12 12-8 2-11 5-12 12-1-7-4-10-12-12 8-2 11-5 12-12z"/></svg> The Oddvale arcade</span>
+          <h1>Games made by AI. <em>Played</em> by you.</h1>
+          <p class="lede">Every game here was designed and coded by AI models, and AI models keep updating them. They run right in your browser: no downloads, no sign-up, no ads.</p>
+          <div class="btn-row">
+            <a class="btn primary" href="#games">Pick a game <svg class="arr" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 5v14M5 12l7 7 7-7"/></svg></a>
+            <a class="btn" href="#how">How it works</a>
+          </div>
+        </div>
+        <div class="hero-art">
+          <div class="frame"><img src="art/hero-arcade.webp" alt="Illustration: an open-air arcade in a valley at night. Odd little robots and creatures play three glowing arcade cabinets under string lights and a big yellow moon." width="1536" height="1024" fetchpriority="high" /></div>
+          <span class="sticker s1"><span class="live"></span> {{GAME_COUNT}} {{GAMES_NOUN}} to play</span>
+          <span class="sticker s2">Free · no sign-up</span>
+        </div>
+      </div>
+    </section>
+
+    <div class="strip" aria-hidden="true">
+      <div class="track">
+        <div class="set"><span>Dodge it</span><b>✦</b><span>Putt it</span><b>✦</b><span>Wire it up</span><b>✦</b><span>Beat your best</span><b>✦</b><span>Read the code</span><b>✦</b><span>Come back tomorrow</span><b>✦</b></div>
+        <div class="set"><span>Dodge it</span><b>✦</b><span>Putt it</span><b>✦</b><span>Wire it up</span><b>✦</b><span>Beat your best</span><b>✦</b><span>Read the code</span><b>✦</b><span>Come back tomorrow</span><b>✦</b></div>
+      </div>
+    </div>
+
+    <section class="section" id="games">
+      <div class="wrap">
+        <div class="s-head">
+          <span class="eyebrow">Now playing</span>
+          <h2>{{GAME_COUNT_WORD}} {{GAMES_NOUN}}, zero loading bars</h2>
+          <p>Click one and you're playing. Each works with a mouse, a keyboard or a thumb, and saves your progress in your browser.</p>
+        </div>
+        <div class="games">
+{{GAME_CARDS}}
+        </div>
+      </div>
+    </section>
+
+    <section class="section band" id="how">
+      <div class="wrap">
+        <div class="s-head">
+          <span class="eyebrow">How it works</span>
+          <h2>The games <em>change</em> while you're away</h2>
+          <p>This arcade is an experiment: what happens when AI models build games, and then keep building on each other's work?</p>
+        </div>
+        <div class="trio">
+          <div class="card">
+            <svg class="shape" viewBox="0 0 54 54" aria-hidden="true"><circle cx="27" cy="27" r="24" fill="var(--orange)" stroke="var(--edge)" stroke-width="2"/><circle cx="33" cy="31" r="8" fill="var(--night)"/></svg>
+            <h3>AI builds them</h3>
+            <p>Design, code, levels, sound and art all come from AI models. People pick the direction and play-test. The models do the rest.</p>
+          </div>
+          <div class="card">
+            <svg class="shape" viewBox="0 0 54 54" aria-hidden="true"><rect x="3" y="8" width="48" height="38" rx="9" fill="var(--blue)" stroke="var(--edge)" stroke-width="2"/><path d="m21 20-7 7 7 7M33 20l7 7-7 7" fill="none" stroke="var(--paper)" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            <h3>All of it is public</h3>
+            <p>Each game has its own GitHub repo, linked from its page. Read the code, follow the changelog, or open an issue with an idea.</p>
+          </div>
+          <div class="card">
+            <svg class="shape" viewBox="0 0 54 54" aria-hidden="true"><path d="M27 4c2 14 9 21 23 23-14 2-21 9-23 23C25 36 18 29 4 27 18 25 25 18 27 4z" fill="var(--mint)" stroke="var(--edge)" stroke-width="2" stroke-linejoin="round"/></svg>
+            <h3>They keep growing</h3>
+            <p>New levels, weapons and ideas arrive as AI models pick up where the last one left off. Each game shows its version and what changed.</p>
+          </div>
+        </div>
+        <p class="note"><b>No accounts yet.</b> Scores and progress are saved in your browser on this device. Clearing your browser data clears them too.</p>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="wrap">
+        <div class="cta-band">
+          <div>
+            <h2>Got an idea for a game?</h2>
+            <p>The next one could be yours. Tell us what the robots should build, or what an existing game is missing.</p>
+          </div>
+          <a class="btn" href="https://github.com/JohnGarrisonDev/oddvale-games/issues" target="_blank" rel="noopener">Suggest a game <svg class="arr" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer hub-footer">
+    <div class="wrap">
+      <span>© {{YEAR}} <a href="https://oddvale.com">Oddvale</a>. AI for the fun of it. Games, code and illustrations on this site are made with AI.</span>
+      <span><a href="https://github.com/JohnGarrisonDev/oddvale-games" target="_blank" rel="noopener">This site on GitHub</a></span>
+    </div>
+  </footer>
+</body>
+</html>
