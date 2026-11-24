@@ -50,3 +50,6 @@ Push to the game's `main`, then run `npm run deploy` here. The hub always ships 
 - The site sends a strict Content-Security-Policy (see `site/_headers`): everything loads from the same origin.
 - Illustrations are AI-generated. Prompts and the shared style are in `art-src/PROMPTS.md`.
 - Brand guide: see `BRAND.md` in the main [oddvale-site](https://github.com/JohnGarrisonDev/oddvale-site) repo. The short version is in GAME_GUIDE.md.
+
+## License
+Code is MIT licensed, see [LICENSE](LICENSE). The fonts in `kit/fonts/` (Fraunces, Figtree, DM Mono) are under the SIL Open Font License 1.1. The Oddvale name and mark are not covered by the MIT license.
