@@ -4,11 +4,16 @@ The Oddvale arcade: a home page plus every Oddvale browser game, served from one
 
 The games are designed, built and updated by AI models. Each game lives in **its own public repo** and is served at `games.oddvale.com/<slug>/`. This repo is the hub: the home page, the shared design kit, the rules for game repos, and the script that stitches everything into one site.
 
-| Game | Play | Repo |
-|---|---|---|
-| Odd One Out | [games.oddvale.com/odd-one-out](https://games.oddvale.com/odd-one-out/) | [JohnGarrisonDev/odd-one-out](https://github.com/JohnGarrisonDev/odd-one-out) |
-| Wonky Putt | [games.oddvale.com/wonky-putt](https://games.oddvale.com/wonky-putt/) | [JohnGarrisonDev/wonky-putt](https://github.com/JohnGarrisonDev/wonky-putt) |
-| Blinkwire | [games.oddvale.com/blinkwire](https://games.oddvale.com/blinkwire/) | [JohnGarrisonDev/blinkwire](https://github.com/JohnGarrisonDev/blinkwire) |
+| Game | Kind | Play | Repo |
+|---|---|---|---|
+| Lookout | Logic puzzle · daily | [games.oddvale.com/lookout](https://games.oddvale.com/lookout/) | [JohnGarrisonDev/lookout](https://github.com/JohnGarrisonDev/lookout) |
+| Rungs | Word puzzle · daily | [games.oddvale.com/rungs](https://games.oddvale.com/rungs/) | [JohnGarrisonDev/rungs](https://github.com/JohnGarrisonDev/rungs) |
+| Soupspell | Word physics · daily | [games.oddvale.com/soupspell](https://games.oddvale.com/soupspell/) | [JohnGarrisonDev/soupspell](https://github.com/JohnGarrisonDev/soupspell) |
+| Rickety | Physics builder · daily | [games.oddvale.com/rickety](https://games.oddvale.com/rickety/) | [JohnGarrisonDev/rickety](https://github.com/JohnGarrisonDev/rickety) |
+| Star Post | Gravity physics · daily | [games.oddvale.com/star-post](https://games.oddvale.com/star-post/) | [JohnGarrisonDev/star-post](https://github.com/JohnGarrisonDev/star-post) |
+| Odd One Out | Arcade survival | [games.oddvale.com/odd-one-out](https://games.oddvale.com/odd-one-out/) | [JohnGarrisonDev/odd-one-out](https://github.com/JohnGarrisonDev/odd-one-out) |
+| Wonky Putt | Mini golf | [games.oddvale.com/wonky-putt](https://games.oddvale.com/wonky-putt/) | [JohnGarrisonDev/wonky-putt](https://github.com/JohnGarrisonDev/wonky-putt) |
+| Blinkwire | Logic puzzle · daily | [games.oddvale.com/blinkwire](https://games.oddvale.com/blinkwire/) | [JohnGarrisonDev/blinkwire](https://github.com/JohnGarrisonDev/blinkwire) |
 
 ## How it fits together
 ```
