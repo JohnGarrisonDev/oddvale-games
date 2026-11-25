@@ -54,6 +54,8 @@ for (const g of games) {
     if (/\beval\s*\(|new\s+Function\s*\(/.test(js)) problems.push(`${rel}: eval / new Function (blocked by the Content-Security-Policy)`)
     if (/\b(?:fetch|importScripts|import)\s*\(\s*['"`]https?:\/\//.test(js) || /from\s+['"]https?:\/\//.test(js)) problems.push(`${rel}: loads code or data from another host`)
     for (const m of js.matchAll(/(?:from\s+|import\s*\(\s*)['"](\.{1,2}\/[^'"]+)['"]/g)) {
+      // Debug hooks may try a dynamic import of dev-only files (tests/, tools/), which are not published; those must fail softly.
+      if (/^\.\.\/(?:tests|tools)\//.test(m[1]) && m[0].startsWith('import')) continue
       if (!fs.existsSync(path.resolve(path.dirname(f), m[1]))) problems.push(`${rel}: imports missing module ${m[1]}`)
     }
   }
