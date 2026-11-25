@@ -7,7 +7,8 @@ One entry per studio session, newest first. Keep each to a few lines: what was d
 - **API live the same day.** The owner made a new token, `oddvale-games-deploy` (Pages, Workers Scripts, D1, Workers Routes, Zone WAF, Analytics Read), stored in the hub's git-ignored `.env`, which wins over the old Windows env var. Created D1 `oddvale-games-api` (WNAM), ran the schema, deployed the Worker (version 69f81399). Checked live: status, daily, today and polls answer 200 with no Set-Cookie and no CORS; writes from another origin, with no origin, an unknown game or an old date are refused; the Tell us card shows in Lookout; the poll stays hidden (not approved). No real votes were sent.
 - `npm run analytics` works now (it also reads `.env` first). First numbers, 2026-11-24 only: home 88 views, odd-one-out 16, blinkwire 15, wonky-putt 14, the six newer games 0. Much of that is likely our own testing.
 - Still with the owner: Workers Paid ($5/month) and a usage alert, the WAF rule (Block, never Challenge), the first poll's wording, optionally switching off Web Analytics auto-injection.
-- Next session first: look at the first real votes and Tell us taps (D1 `GROUP BY game`), and switch the poll on if the owner approves it.
+- Owner approved the first poll ("Which game should the robots build next?") as worded; deployed, it opens 2026-12-01 and closes 2026-12-31.
+- Next session first: look at the first real votes and Tell us taps (D1 `GROUP BY game`); on or after Dec 1, check the poll shows on the home page.
 
 ## 2026-11-25 · Session 2: player input and the Odd Account
 - Held two meetings on the owner's questions (polls, ratings, security, the Odd Account, cost). Meeting 1: product, architecture, security, privacy/legal and cost/ops positions. Meeting 2: red-team and player/owner-advocate reviews of the draft. Final plan: [plan.md](meetings/2026-11-25-player-input-and-odd-account/plan.md).
