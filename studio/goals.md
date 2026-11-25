@@ -12,7 +12,7 @@ These are the first draft, set when the studio was created. The first studio ses
    - Blocked on: the Cloudflare API token needs Zone Analytics Read (owner action).
    - Due: 2026-12-08.
 2. **Hear from players.** Make giving feedback easy and start a regular feedback report.
-   - Measured by: a clear "Feedback" route on the hub and game pages (GitHub issues to start; anything with a form or third party is an owner decision), and a first `reports/*-feedback.md`.
+   - Measured by: a clear "Feedback" route on the hub and game pages (GitHub issue form shipped 2026-11-24), and a first `reports/*-feedback.md`. Next step planned in [the player-input plan](meetings/2026-11-25-player-input-and-odd-account/plan.md) Phase 0 (anonymous fixed-choice feedback taps and polls), awaiting the owner.
    - Due: 2026-12-15.
 3. **Make the eight launch games feel right to humans.** Every game so far was tuned by tests and bots, not people.
    - Measured by: a human or careful real-time playtest of each game, findings in `games.md`, and fixes shipped for the worst problem in each of Star Post, Rickety and Odd One Out (the three rated Medium or harder that were least hand-played).
