@@ -10,7 +10,8 @@
     "serve": "node scripts/serve.mjs dist 4173",
     "check": "node scripts/check.mjs",
     "art": "node scripts/art.mjs",
-    "deploy": "npm run build && npm run check && node scripts/cf.mjs pages deploy dist --project-name oddvale-games --branch main --commit-dirty=true"
+    "deploy": "npm run build && npm run check && node scripts/cf.mjs pages deploy dist --project-name oddvale-games --branch main --commit-dirty=true",
+    "analytics": "node scripts/analytics.mjs"
   },
   "devDependencies": {
     "sharp": "^0.35.5",

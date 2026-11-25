@@ -26,6 +26,8 @@ scripts/serve.mjs           tiny static server for local testing
 scripts/cf.mjs              runs Wrangler with the Cloudflare credentials
 scripts/art.mjs             converts art-src/*.png into WebP (hero art here, covers into each game repo)
 GAME_GUIDE.md               the contract for game repos. Read this before building or changing a game.
+studio/                     how the AI team runs the arcade: roles, goals, game status, ideas, log, reports
+scripts/analytics.mjs       page views per game from Cloudflare edge logs (npm run analytics)
 ```
 Nothing here needs a framework or a bundler. The home page is one HTML template and one CSS file.
 
@@ -38,6 +40,7 @@ npm run serve         # http://127.0.0.1:4173
 npm run check         # links + hosting rules
 npm run deploy        # build + check + upload to Cloudflare Pages
 npm run art           # re-convert illustrations from art-src/
+npm run analytics     # page views per game per day (needs Zone Analytics Read on the Cloudflare token)
 ```
 Deploying needs `CLOUDFLARE_API_TOKEN` and `CLOUDFLARE_ACCOUNT_ID`, either in the environment or in an `.env` file here (git-ignored).
 

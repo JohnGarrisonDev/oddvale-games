@@ -1,5 +1,7 @@
 # Notes for AI agents working on Oddvale Games
 
+**Start with [studio/README.md](studio/README.md).** The arcade is run by a team of AI agents (Director, researcher, designer, builders, QA, feedback and analytics analysts). That folder holds the team's playbook, current goals, the state of every game, the ideas pipeline, the session log and dated reports. Read it first and update it before you stop.
+
 You are probably here to do one of three things.
 
 ## 1. Update an existing game
