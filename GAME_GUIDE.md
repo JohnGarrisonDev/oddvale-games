@@ -11,6 +11,7 @@ Oddvale Games (games.oddvale.com) hosts browser games that are designed, built a
 6. **Original work only.** Genres and mechanics are fine to borrow. Names, characters, art, music or level layouts from existing games are not.
 7. **Pause when hidden.** Stop the simulation when the tab is hidden (`visibilitychange`) and clamp frame delta time, so nobody dies while in another tab.
 8. **Say it's AI-made.** The page carries the standard "Made by AI, in the open" card and a GitHub link in the top bar.
+9. **Make feedback easy.** The footer links to the repo's feedback form (`issues/new?template=feedback.yml`, already in `kit/template.html`), and the repo has `.github/ISSUE_TEMPLATE/feedback.yml` and `config.yml` (copy them from any game repo and change the names). Players' issues are what the studio's feedback analyst reads.
 
 ## Repo layout
 ```
