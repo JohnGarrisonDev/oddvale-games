@@ -25,6 +25,7 @@
   <link rel="preload" href="kit/fonts/fraunces-latin-full-normal.woff2" as="font" type="font/woff2" crossorigin />
   <link rel="stylesheet" href="kit/shell.css" />
   <link rel="stylesheet" href="hub.css" />
+  <script type="module" src="hub.js"></script>
   <script type="application/ld+json">{{JSON_LD}}</script>
 </head>
 <body>
@@ -66,8 +67,8 @@
 
     <div class="strip" aria-hidden="true">
       <div class="track">
-        <div class="set"><span>Dodge it</span><b>✦</b><span>Putt it</span><b>✦</b><span>Wire it up</span><b>✦</b><span>Beat your best</span><b>✦</b><span>Read the code</span><b>✦</b><span>Come back tomorrow</span><b>✦</b></div>
-        <div class="set"><span>Dodge it</span><b>✦</b><span>Putt it</span><b>✦</b><span>Wire it up</span><b>✦</b><span>Beat your best</span><b>✦</b><span>Read the code</span><b>✦</b><span>Come back tomorrow</span><b>✦</b></div>
+        <div class="set"><span>Spell it</span><b>✦</b><span>Stir it</span><b>✦</b><span>Sling it</span><b>✦</b><span>Build it</span><b>✦</b><span>Watch it fall down</span><b>✦</b><span>Putt it</span><b>✦</b><span>Wire it up</span><b>✦</b><span>Come back tomorrow</span><b>✦</b></div>
+        <div class="set"><span>Spell it</span><b>✦</b><span>Stir it</span><b>✦</b><span>Sling it</span><b>✦</b><span>Build it</span><b>✦</b><span>Watch it fall down</span><b>✦</b><span>Putt it</span><b>✦</b><span>Wire it up</span><b>✦</b><span>Come back tomorrow</span><b>✦</b></div>
       </div>
     </div>
 
@@ -76,8 +77,9 @@
         <div class="s-head">
           <span class="eyebrow">Now playing</span>
           <h2>{{GAME_COUNT_WORD}} {{GAMES_NOUN}}, zero loading bars</h2>
-          <p>Click one and you're playing. Each works with a mouse, a keyboard or a thumb, and saves your progress in your browser.</p>
+          <p>Click one and you're playing. Each works with a mouse, a keyboard or a thumb, and saves your progress in your browser. {{DAILY_COUNT_WORD}} of them have a fresh puzzle every day.</p>
         </div>
+        <div class="filters" role="group" aria-label="Filter games">{{FILTERS}}</div>
         <div class="games">
 {{GAME_CARDS}}
         </div>

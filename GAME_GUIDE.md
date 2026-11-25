@@ -35,6 +35,8 @@ CHANGELOG.md      one entry per version, newest first, written for players
   "tagline": "One short line that sells it.",
   "description": "Two or three plain sentences: what you do and why it's fun.",
   "genre": "Arcade survival",
+  "kinds": ["Arcade"],
+  "daily": false,
   "verb": "Survive",
   "tone": "ink",
   "players": "1 player",
@@ -48,7 +50,7 @@ CHANGELOG.md      one entry per version, newest first, written for players
   "coverAlt": "Illustration: ..."
 }
 ```
-`tone` picks the hub card colour: `ink`, `blue`, `yellow`, `mint`, `orange` or `pink`.
+`tone` picks the hub card colour: `ink`, `blue`, `yellow`, `mint`, `orange` or `pink`. `kinds` drives the hub's filter chips: one or more of `Puzzle`, `Word`, `Physics`, `Arcade`. Set `daily` to `true` when the game has a new puzzle or challenge every day; the hub then shows a "New every day" badge.
 
 ## The kit
 `kit/shell.css` gives the page shell: top bar, `.stage` (the bordered box the game lives in), `.info` cards, `.btn`, `.chip`, `kbd`, the brand fonts and the colour tokens. `kit/kit.js` exports:
