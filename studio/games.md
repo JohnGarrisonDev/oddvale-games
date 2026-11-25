@@ -2,6 +2,8 @@
 
 One section per live game. Update it whenever a game ships a change, a report finds something, or a weak spot is fixed. "Weak spots" come from build and QA reports and must stay honest; delete a line only when it is fixed and verified.
 
+Since 2026-11-25 every game has the Phase 0 talk widgets (Tell us card, Privacy link; daily games also a difficulty vote and "you beat N%" on the result card). They stay hidden until the API is deployed. Common weak spot: on phones the vote often sits below the fold of the result card.
+
 All nine launched on 2026-11-24, built by AI subagents and reviewed in a browser before shipping. None has been played at length by a person yet, and none has had its sound heard or been tried on a real phone.
 
 ## Overprint
@@ -14,6 +16,7 @@ All nine launched on 2026-11-24, built by AI subagents and reviewed in a browser
 ## Lookout
 `lookout` · Logic puzzle · daily · Medium (3) · v1.0.0 · [repo](https://github.com/JohnGarrisonDev/lookout)
 - Plant hedges so every robot lookout sees exactly its number. Daily Small 6x6 / Medium 7x7 / Large 9x9, 40-level journey, free play up to Fiendish, 14-day archive. Hints explain the next deduction.
+- Talk score is solve time, which ignores hints and Check. 1.1.0 capped the solved card at 66% of the stage on phones.
 - Weak spots: the "sees now" tag is tiny on 9x9 phone boards; the solved card covers part of the board; Fiendish uses what-if reasoning some players will feel is guessing; difficulty is graded by technique, not playtested.
 - Next: playtest the Large daily on a phone; consider a larger corner tag.
 
@@ -32,6 +35,7 @@ All nine launched on 2026-11-24, built by AI subagents and reviewed in a browser
 ## Rickety
 `rickety` · Physics builder · daily · Medium (3) · v1.0.0 · [repo](https://github.com/JohnGarrisonDev/rickety)
 - Build a bridge on a budget, press Go, watch a parcel cart cross or collapse it. 24 levels, daily gap (cheapest working bridge), sandbox.
+- Talk score is the first crossing's cost only, and ignores parcels lost.
 - Weak spots: only levels 1-2 were built by hand (3-24 run with stored reference designs); some pars are loose; some dailies are steel-heavy; the daily is generated in the browser on first open (can take most of a second); Copy result falls back to showing text; one-finger pan untested.
 - Next: human playtest of levels 3-24; tighten loose pars.
 

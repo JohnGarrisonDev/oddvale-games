@@ -1,6 +1,6 @@
 # Plan: player input, security and the Odd Account
 
-**Status: final, waiting for the owner's decisions** (see the end). Nothing here gets built before the owner says go.
+**Status: Phase 0 approved by the owner on 2026-11-25 and built** (API not yet deployed: the token needs Workers and D1 permissions, see `api/README.md`). Decisions 2-5 below are still open.
 **Date:** 2026-11-25 · **Chair:** the Director · **Prices** were checked by the roles on 2026-11-25; figures marked "verify" come from third-party pages.
 
 ## Minutes

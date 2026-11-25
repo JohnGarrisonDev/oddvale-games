@@ -22,7 +22,8 @@ export const DAILIES = {
   rungs: { main: 'short', boards: { short: { min: 1, max: 99, better: 'low' }, tall: { min: 1, max: 99, better: 'low' }, towering: { min: 1, max: 99, better: 'low' } } },
   soupspell: { main: 'bowl', boards: { bowl: { min: 0, max: 99999, better: 'high' } } },
   rickety: { main: 'gap', boards: { gap: { min: 1, max: 999999, better: 'low' } } },
-  'star-post': { main: 'delivery', boards: { delivery: { min: 0, max: 99999, better: 'high' } } },
+  // star-post: launches * 1000 + flight tenths of a second (fewest launches first, then the shorter flight)
+  'star-post': { main: 'delivery', boards: { delivery: { min: 1, max: 999999, better: 'low' } } },
   'wonky-putt': { main: 'hole', boards: { hole: { min: 1, max: 12, better: 'low' } } },
   blinkwire: { main: 'board', boards: { board: { min: 0, max: 99999, better: 'low' } } },
 }

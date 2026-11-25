@@ -2,6 +2,11 @@
 
 One entry per studio session, newest first. Keep each to a few lines: what was decided, what shipped, what is blocked, what the next session should do first.
 
+## 2026-11-25 · Session 3: Phase 0 build
+- Owner approved Phase 0. Built: the API Worker (`api/`, 12 tests on real SQLite, also run on local workerd), `kit/talk.js` widgets, a Today's puzzles row and poll slot on the hub, /privacy/, /whats-new/ and /feed.xml, HSTS and COOP headers, a no-cookie check, and the promise line. All 9 games carry the widgets (8 daily vote + "you beat N%" cards, Tell us card everywhere, Privacy link); 3 builders, each tested in a browser against a local API.
+- **Blocked: the API is not deployed.** The Cloudflare token can deploy Pages only (no Workers, D1 or routes), so in production the widgets stay hidden. Owner steps are in `api/README.md` "First deploy". The first poll (`polls.json`) waits for the owner's OK on its wording.
+- Next session first: once the token has the permissions, create D1, deploy the API, confirm the rate-limit bindings and no Set-Cookie live, then switch the poll on if approved.
+
 ## 2026-11-25 · Session 2: player input and the Odd Account
 - Held two meetings on the owner's questions (polls, ratings, security, the Odd Account, cost). Meeting 1: product, architecture, security, privacy/legal and cost/ops positions. Meeting 2: red-team and player/owner-advocate reviews of the draft. Final plan: [plan.md](meetings/2026-11-25-player-input-and-odd-account/plan.md).
 - Outcome: anonymous polls, daily difficulty votes, "you beat X%" stats, fixed-choice feedback taps and a privacy page in Phase 0 (about $60/year); streak freeze, transfer code and Odd Account foundations plus an optional Pullbox pilot in Phase 1 ($0); the full Odd Account behind gates and signals (about $1,000-2,500 legal once, $0-1,200/year). **Waiting on the owner's five decisions in the plan.**
