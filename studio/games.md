@@ -50,10 +50,11 @@ All nine launched on 2026-11-24, built by AI subagents and reviewed in a browser
 - Next: real-time feel pass by a person.
 
 ## Wonky Putt
-`wonky-putt` · Mini golf · Easy (2) · v1.0.0 · [repo](https://github.com/JohnGarrisonDev/wonky-putt)
+`wonky-putt` · Mini golf · daily · Easy (2) · v1.1.0 · [repo](https://github.com/JohnGarrisonDev/wonky-putt)
 - 18 holes of top-down mini golf with sand, water, ice, bumpers, windmills, portals and conveyors. Ball skins, medals.
+- 1.1.0 Daily Hole: a generated hole a day (pre-generated table through 2027-12-31, 402 days; tests warn 60 days before it runs out), one official try then practice, streaks, Copy result. Every daily passes the solver plus a noisy-player check; par = max(solver+1, noisy mean+0.5), 2-5, rising through the week. Weak spots: U-turn and two-room layouts dominate; names repeat sometimes; a bunker can overlap a room divider; only ~9 dailies looked at by eye.
 - Weak spots: aces are generous once you know the line; hole 8 is chaotic; back-nine greens are less wonky in shape; the title panel covers the windmill.
-- Next: a second course (the hole format is data); a daily hole would fit the arcade's direction.
+- Next: a second course (the hole format is data); extend the daily table before 2027-11.
 
 ## Blinkwire
 `blinkwire` · Logic puzzle · daily · Easy (2) · v1.0.0 · [repo](https://github.com/JohnGarrisonDev/blinkwire)

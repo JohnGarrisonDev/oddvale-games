@@ -15,7 +15,7 @@ Research: [2026-11-24 daily games](reports/2026-11-24-research-daily-games.md). 
 
 | Idea | Scores | Total | Reason |
 |---|---|---|---|
-| **Daily hole for Wonky Putt** (spark; an update, not a new game) | 5/4/2/4/4/5 | 24 | Small, and it fits the daily direction. Daily golf already exists (Kinda Hard Golf, 2025), so it adds a daily to an existing game rather than something new. The Director should schedule it as an update. |
+| **Daily hole for Wonky Putt** (spark; an update, not a new game; **shipped as Wonky Putt 1.1.0 on 2026-11-25**) | 5/4/2/4/4/5 | 24 | Small, and it fits the daily direction. Daily golf already exists (Kinda Hard Golf, 2025), so it adds a daily to an existing game rather than something new. The Director should schedule it as an update. |
 | **Daily deduction mystery** (spark) | 3/5/2/5/5/3 | 23 | Clues by Sam (50k daily players claimed, early 2026) proves the demand, but every version so far is too close to it. Needs its own twist (for example deduction over time or sequence, not suspect grids) before pitching. |
 | **Clank**: gears with letters on their rims; turning one turns its neighbours; make the top letters spell a word (new) | 3/4/4/4/4/4 | 23 | Original and small, but permutation puzzles can turn into a Rubik's-style grind. A spare word idea if Overprint is not approved. |
 

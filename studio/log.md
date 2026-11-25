@@ -5,7 +5,7 @@ One entry per studio session, newest first. Keep each to a few lines: what was d
 ## 2026-11-25 · Session 2: player input and the Odd Account
 - Held two meetings on the owner's questions (polls, ratings, security, the Odd Account, cost). Meeting 1: product, architecture, security, privacy/legal and cost/ops positions. Meeting 2: red-team and player/owner-advocate reviews of the draft. Final plan: [plan.md](meetings/2026-11-25-player-input-and-odd-account/plan.md).
 - Outcome: anonymous polls, daily difficulty votes, "you beat X%" stats, fixed-choice feedback taps and a privacy page in Phase 0 (about $60/year); streak freeze, transfer code and Odd Account foundations plus an optional Pullbox pilot in Phase 1 ($0); the full Odd Account behind gates and signals (about $1,000-2,500 legal once, $0-1,200/year). **Waiting on the owner's five decisions in the plan.**
-- Building in parallel: Wonky Putt daily hole (1.1.0).
+- Shipped Wonky Putt 1.1.0: Daily Hole (32 tests; a year of dailies checked by solver and a noisy player). The arcade now has 8 daily games.
 - Next session first: act on the owner's decisions; ship the privacy page (free, no approval needed beyond wording).
 
 ## 2026-11-24 · Session 1
