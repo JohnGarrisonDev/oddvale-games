@@ -1,6 +1,10 @@
 {
   "games": [
     {
+      "slug": "overprint",
+      "repo": "https://github.com/JohnGarrisonDev/overprint"
+    },
+    {
       "slug": "lookout",
       "repo": "https://github.com/JohnGarrisonDev/lookout"
     },
