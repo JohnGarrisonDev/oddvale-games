@@ -51,6 +51,8 @@ function fetchGame({ slug, repo }) {
 const KINDS = ['Puzzle', 'Word', 'Physics', 'Arcade']
 const REQUIRED = ['slug', 'title', 'tagline', 'description', 'genre', 'verb', 'tone', 'version', 'updated', 'repo', 'cover', 'coverAlt']
 const TONES = ['ink', 'blue', 'yellow', 'mint', 'orange', 'pink']
+// difficulty 1-5; the label shown next to the pips on the hub card
+const DIFFICULTY = ['', 'Relaxed', 'Easy', 'Medium', 'Hard', 'Brutal']
 const fmtDate = (iso) => new Date(`${iso}T12:00:00Z`).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric', timeZone: 'UTC' })
 
 // ---- collect games
@@ -64,6 +66,8 @@ for (const entry of registry.games) {
   if (missing.length) throw new Error(`${entry.slug}/game.json is missing: ${missing.join(', ')}`)
   if (meta.slug !== entry.slug) throw new Error(`${entry.slug}/game.json has slug "${meta.slug}"`)
   if (!Array.isArray(meta.kinds) || !meta.kinds.length || meta.kinds.some((k) => !KINDS.includes(k))) throw new Error(`${entry.slug}/game.json needs "kinds": one or more of ${KINDS.join(', ')}`)
+  if (!Number.isInteger(meta.difficulty) || meta.difficulty < 1 || meta.difficulty > 5) throw new Error(`${entry.slug}/game.json needs "difficulty": a whole number from 1 (Relaxed) to 5 (Brutal)`)
+  if (typeof meta.difficultyNote !== 'string' || !meta.difficultyNote.trim() || meta.difficultyNote.length > 110) throw new Error(`${entry.slug}/game.json needs "difficultyNote": one plain sentence of at most 110 characters`)
   if (!TONES.includes(meta.tone)) throw new Error(`${entry.slug}/game.json tone must be one of ${TONES.join(', ')}`)
   for (const f of ['index.html', meta.cover]) if (!fs.existsSync(path.join(dir, f))) throw new Error(`${entry.slug} has no ${f}`)
   copyDir(dir, path.join(DIST, entry.slug))
@@ -76,13 +80,17 @@ const ARROW = '<svg class="arr" width="18" height="18" viewBox="0 0 24 24" fill=
 const GH = '<svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 .5a11.5 11.5 0 0 0-3.64 22.41c.58.1.79-.25.79-.56v-2c-3.2.7-3.88-1.36-3.88-1.36-.52-1.33-1.28-1.69-1.28-1.69-1.05-.71.08-.7.08-.7 1.16.08 1.77 1.19 1.77 1.19 1.03 1.76 2.7 1.25 3.36.96.1-.75.4-1.25.73-1.54-2.55-.29-5.24-1.28-5.24-5.68 0-1.26.45-2.28 1.19-3.09-.12-.29-.52-1.46.11-3.05 0 0 .97-.31 3.18 1.18a11 11 0 0 1 5.78 0c2.2-1.49 3.17-1.18 3.17-1.18.63 1.59.23 2.76.11 3.05.74.81 1.19 1.83 1.19 3.09 0 4.41-2.69 5.38-5.25 5.67.41.36.78 1.06.78 2.13v3.16c0 .31.21.67.8.56A11.5 11.5 0 0 0 12 .5z"/></svg>'
 
 const card = (g, i) => `
-        <article class="g-card ${esc(g.tone)}" id="${esc(g.slug)}" data-kinds="${esc([...g.kinds, ...(g.daily ? ['Daily'] : [])].join(' '))}">
+        <article class="g-card ${esc(g.tone)}" id="${esc(g.slug)}" data-difficulty="${g.difficulty}" data-kinds="${esc([...g.kinds, ...(g.daily ? ['Daily'] : [])].join(' '))}">
           <a class="art" href="${esc(g.slug)}/" tabindex="-1" aria-hidden="true">${g.daily ? '<span class="daily"><i></i>New every day</span>' : ''}<img src="${esc(g.slug)}/${esc(g.cover)}" alt="${esc(g.coverAlt)}" width="1536" height="1024" ${i < 3 ? '' : 'loading="lazy" '}decoding="async" /></a>
           <div class="body">
             <div class="top"><span class="verb">${esc(g.verb)}</span><span class="status">${esc(g.genre)}${g.session ? ` · ${esc(g.session)}` : ''}</span></div>
             <h3><a class="title" href="${esc(g.slug)}/">${esc(g.title)}</a></h3>
             <p class="line">${esc(g.tagline)}</p>
             <p class="blurb">${esc(g.description)}</p>
+            <div class="diff" data-level="${g.difficulty}">
+              <p class="diff-head"><span class="lbl">Difficulty</span><span class="pips" aria-hidden="true">${[1, 2, 3, 4, 5].map((n) => `<i${n <= g.difficulty ? ' class="on"' : ''}></i>`).join('')}</span><b>${DIFFICULTY[g.difficulty]}</b><span class="sr"> (${g.difficulty} out of 5)</span></p>
+              <p class="diff-note">${esc(g.difficultyNote)}</p>
+            </div>
             <div class="actions">
               <a class="btn play" href="${esc(g.slug)}/">Play ${ARROW}</a>
               <a class="src" href="${esc(g.repo)}" target="_blank" rel="noopener">${GH} Source</a>
