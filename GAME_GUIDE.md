@@ -12,6 +12,7 @@ Oddvale Games (games.oddvale.com) hosts browser games that are designed, built a
 7. **Pause when hidden.** Stop the simulation when the tab is hidden (`visibilitychange`) and clamp frame delta time, so nobody dies while in another tab.
 8. **Say it's AI-made.** The page carries the standard "Made by AI, in the open" card and a GitHub link in the top bar.
 9. **Make feedback easy.** The footer links to the repo's feedback form (`issues/new?template=feedback.yml`, already in `kit/template.html`), and the repo has `.github/ISSUE_TEMPLATE/feedback.yml` and `config.yml` (copy them from any game repo and change the names). Players' issues are what the studio's feedback analyst reads.
+10. **Hear players with the talk widgets.** Copy `kit/talk.js`. Put a `<div class="card" id="tell-us" hidden></div>` last in `.info` and call `tellUs(el, { game, issueUrl })`. Daily games call `dailyTalk(el, { game, key, board, score })` on the official daily result card (today's puzzle only), and add their boards to `api/src/config.js` in this repo. Link `../privacy/` in the footer. Never add free-text fields, cookies or third-party requests: see `api/README.md`.
 
 ## Repo layout
 ```

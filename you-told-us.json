@@ -1,0 +1,4 @@
+{
+  "_readme": "The \"You told us\" list on /whats-new/. Add a note when a change was made because of polls or feedback taps. Totals only, never anything about a person. Newest first. Example: { \"date\": \"2026-12-14\", \"text\": \"61% of votes said Tuesday's Lookout was Brutal, so Tuesdays are a little gentler now.\" }",
+  "notes": []
+}

@@ -12,6 +12,7 @@
   <link rel="icon" href="favicon-32.png" sizes="32x32" type="image/png" />
   <link rel="apple-touch-icon" href="apple-touch-icon.png" />
   <link rel="manifest" href="site.webmanifest" />
+  <link rel="alternate" type="application/rss+xml" title="Oddvale Games: what's new" href="feed.xml" />
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="Oddvale Games" />
   <meta property="og:title" content="Oddvale Games — browser games made by AI" />
@@ -40,6 +41,7 @@
       <nav class="nav" aria-label="Main">
         <a href="#games">Games</a>
         <a href="#how">How it works</a>
+        <a href="whats-new/">What's new</a>
         <a href="https://oddvale.com">oddvale.com</a>
       </nav>
     </div>
@@ -86,6 +88,18 @@
       </div>
     </section>
 
+    <section class="section today-sec" id="today">
+      <div class="wrap today-grid">
+        <div class="today-box">
+          <span class="eyebrow">Today's puzzles</span>
+          <h2>Fresh today</h2>
+          <p class="today-sub">Tick them off. The badge shows how hard today's players found it.</p>
+          <ul class="today-list">{{TODAY_ROW}}</ul>
+        </div>
+        <div class="polls" id="polls" hidden></div>
+      </div>
+    </section>
+
     <section class="section band" id="how">
       <div class="wrap">
         <div class="s-head">
@@ -110,7 +124,7 @@
             <p>New levels, weapons and ideas arrive as AI models pick up where the last one left off. Each game shows its version and what changed.</p>
           </div>
         </div>
-        <p class="note"><b>No accounts yet.</b> Scores and progress are saved in your browser on this device. Clearing your browser data clears them too.</p>
+        <p class="note"><b>No accounts, no cookies, no trackers.</b> Scores and progress are saved in your browser on this device; clearing your browser data clears them too. Polls and scores are counted anonymously. We store nothing about you. <a href="privacy/">How that works</a>.</p>
       </div>
     </section>
 
@@ -127,11 +141,6 @@
     </section>
   </main>
 
-  <footer class="footer hub-footer">
-    <div class="wrap">
-      <span>© {{YEAR}} <a href="https://oddvale.com">Oddvale</a>. AI for the fun of it. Games, code and illustrations on this site are made with AI.</span>
-      <span><a href="https://github.com/JohnGarrisonDev/oddvale-games/issues/new?template=feedback.yml" target="_blank" rel="noopener">Send feedback</a> · <a href="https://github.com/JohnGarrisonDev/oddvale-games" target="_blank" rel="noopener">This site on GitHub</a></span>
-    </div>
-  </footer>
+  {{HUB_FOOTER}}
 </body>
 </html>

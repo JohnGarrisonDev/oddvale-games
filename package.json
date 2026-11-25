@@ -11,7 +11,12 @@
     "check": "node scripts/check.mjs",
     "art": "node scripts/art.mjs",
     "deploy": "npm run build && npm run check && node scripts/cf.mjs pages deploy dist --project-name oddvale-games --branch main --commit-dirty=true",
-    "analytics": "node scripts/analytics.mjs"
+    "analytics": "node scripts/analytics.mjs",
+    "api:test": "node --test --no-warnings api/test/api.test.js",
+    "api:dev": "cd api && npx wrangler d1 execute oddvale-games-api --local --file schema.sql && npx wrangler dev --port 8787",
+    "api:db:init": "cd api && node ../scripts/cf.mjs d1 execute oddvale-games-api --remote --file schema.sql",
+    "api:deploy": "npm run api:test && cd api && node ../scripts/cf.mjs deploy",
+    "serve:api": "node scripts/serve.mjs dist 4173 --api"
   },
   "devDependencies": {
     "sharp": "^0.35.5",

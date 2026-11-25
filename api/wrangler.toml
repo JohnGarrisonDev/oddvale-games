@@ -1,0 +1,36 @@
+# Oddvale Games API Worker. Deploy: npm run api:deploy (from the hub repo root). Setup steps are in api/README.md.
+name = "oddvale-games-api"
+main = "src/index.js"
+compatibility_date = "2026-11-01"
+workers_dev = false
+routes = [{ pattern = "games.oddvale.com/api/*", zone_name = "oddvale.com" }]
+
+[vars]
+ALLOWED_ORIGINS = "https://games.oddvale.com"
+
+[[d1_databases]]
+binding = "DB"
+database_name = "oddvale-games-api"
+database_id = "REPLACE_AFTER_d1_create"
+
+# Rate limits count per client IP (IPv6 grouped by /64) in Cloudflare's memory. Nothing is written down.
+[[ratelimits]]
+name = "RL_WRITE"
+namespace_id = "7101"
+simple = { limit = 20, period = 60 }
+
+[[ratelimits]]
+name = "RL_TARGET"
+namespace_id = "7102"
+simple = { limit = 3, period = 60 }
+
+[[ratelimits]]
+name = "RL_READ"
+namespace_id = "7103"
+simple = { limit = 120, period = 60 }
+
+[triggers]
+crons = ["17 3 * * *"]
+
+[observability]
+enabled = false

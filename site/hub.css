@@ -118,3 +118,46 @@ body { font-size: 17.5px; }
 .lost { min-height: 70vh; display: grid; place-items: center; text-align: center; padding-block: 60px; }
 .lost h1 { font-size: clamp(48px, 8vw, 96px); margin: 18px 0; }
 .lost p { color: var(--ink-2); font-size: 19px; margin-bottom: 28px; }
+.note a { color: var(--ink); font-weight: 650; }
+
+/* ---- Today's puzzles + polls */
+.today-sec { padding-top: 0; }
+.today-grid { display: grid; grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr); gap: 24px; align-items: start; }
+.today-grid:has(.polls[hidden]) { grid-template-columns: minmax(0, 1fr); }
+.today-box { background: var(--surface); border: 2px solid var(--edge); border-radius: var(--radius); padding: 22px; box-shadow: var(--hard); display: grid; gap: 10px; }
+.today-box h2 { font-size: clamp(26px, 3vw, 34px); }
+.today-sub { color: var(--ink-2); }
+.today-list { list-style: none; margin: 6px 0 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fill, minmax(190px, 1fr)); gap: 10px; }
+.today-list a { display: flex; flex-wrap: wrap; align-items: center; gap: 6px 8px; min-height: 52px; padding: 10px 14px; border: 2px solid var(--edge); border-radius: 14px; text-decoration: none; color: var(--ink); background: var(--bg); font-weight: 700; }
+.today-list a:hover { background: var(--yellow); color: var(--night); }
+.today-list .t { flex: 1 1 auto; }
+.today-list .tick { font: 600 12.5px/1 var(--font-body); padding: 5px 8px; border-radius: 999px; background: var(--mint); color: var(--night); }
+.today-list .tick::before { content: "✓ "; }
+.today-list li.done a { background: color-mix(in srgb, var(--mint) 22%, var(--bg)); }
+.today-list .comm { font: 500 12.5px/1 var(--font-mono); padding: 5px 8px; border-radius: 999px; border: 1.5px solid var(--edge); }
+.polls { display: grid; gap: 16px; }
+@media (max-width: 860px) { .today-grid { grid-template-columns: minmax(0, 1fr); } }
+
+/* ---- sub-pages: privacy, what's new */
+.page { padding-block: clamp(28px, 5vw, 64px); }
+.prose { max-width: 46rem; display: grid; gap: 14px; }
+.prose h1 { font-size: clamp(38px, 6vw, 60px); }
+.prose h2 { font-size: clamp(24px, 3vw, 30px); margin-top: 18px; }
+.prose p, .prose li { color: var(--ink-2); font-size: 17px; line-height: 1.6; }
+.prose ul { margin: 0; padding-left: 1.2em; display: grid; gap: 6px; }
+.prose a { color: var(--ink); font-weight: 650; }
+.prose code { font: 500 .92em var(--font-mono); background: var(--surface-2); padding: 1px 6px; border-radius: 6px; }
+.prose .lede { font-size: 19px; color: var(--ink); }
+.prose .updated { font-size: 14.5px; color: var(--muted); }
+.changes { list-style: none; margin: 10px 0 0; padding: 0; display: grid; gap: 18px; }
+.change { background: var(--surface); border: 2px solid var(--edge); border-radius: 18px; padding: 18px 20px; box-shadow: 4px 4px 0 var(--edge); display: grid; gap: 8px; }
+.change-head { display: flex; flex-wrap: wrap; align-items: baseline; gap: 6px 12px; margin: 0; }
+.change-head .g { font: 700 22px/1.1 var(--font-display); color: var(--ink); text-decoration: none; }
+.change-head .g:hover { text-decoration: underline; }
+.change-head .v { font: 500 14px/1 var(--font-mono); padding: 4px 8px; border-radius: 999px; background: var(--yellow); color: var(--night); }
+.change-head time { color: var(--muted); font-size: 14.5px; }
+.change-body { display: grid; gap: 8px; }
+.change-body p, .change-body li { font-size: 16px; }
+.change-body h4 { margin: 4px 0 0; font-size: 16px; }
+.told { background: var(--mint); color: var(--night); border: 2px solid var(--edge); border-radius: 18px; padding: 18px 20px; display: grid; gap: 8px; }
+.told * { color: var(--night) !important; }

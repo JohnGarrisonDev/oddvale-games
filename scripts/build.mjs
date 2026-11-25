@@ -8,6 +8,7 @@ import fs from 'node:fs'
 import path from 'node:path'
 import { execFileSync } from 'node:child_process'
 import { fileURLToPath } from 'node:url'
+import { parseChangelog, writeWhatsNew, subPage, todayRow, hubFooter } from './pages.mjs'
 
 const here = path.dirname(fileURLToPath(import.meta.url))
 const ROOT = path.resolve(here, '..')
@@ -59,6 +60,7 @@ const fmtDate = (iso) => new Date(`${iso}T12:00:00Z`).toLocaleDateString('en-US'
 fs.rmSync(DIST, { recursive: true, force: true })
 fs.mkdirSync(DIST, { recursive: true })
 const games = []
+const changes = []
 for (const entry of registry.games) {
   const { dir, from } = fetchGame(entry)
   const meta = JSON.parse(fs.readFileSync(path.join(dir, 'game.json'), 'utf8'))
@@ -72,6 +74,8 @@ for (const entry of registry.games) {
   for (const f of ['index.html', meta.cover]) if (!fs.existsSync(path.join(dir, f))) throw new Error(`${entry.slug} has no ${f}`)
   copyDir(dir, path.join(DIST, entry.slug))
   games.push(meta)
+  const cl = path.join(dir, 'CHANGELOG.md')
+  if (fs.existsSync(cl)) for (const e of parseChangelog(fs.readFileSync(cl, 'utf8'))) changes.push({ game: meta, ...e })
   console.log(`+ /${entry.slug}/  v${meta.version}  (${from})`)
 }
 
@@ -111,6 +115,8 @@ const countWord = N[games.length] || String(games.length)
 const template = fs.readFileSync(path.join(ROOT, 'site', 'index.template.html'), 'utf8')
 const html = template
   .replaceAll('{{GAME_CARDS}}', games.map(card).join('\n'))
+  .replaceAll('{{TODAY_ROW}}', todayRow(games))
+  .replaceAll('{{HUB_FOOTER}}', hubFooter('', new Date().getFullYear()))
   .replaceAll('{{FILTERS}}', ['All', ...KINDS.filter((k) => games.some((g) => g.kinds.includes(k))), ...(games.some((g) => g.daily) ? ['Daily'] : [])].map((k, i) => `<button type="button" data-filter="${k}" aria-pressed="${i === 0}">${k === 'Daily' ? 'New every day' : k}</button>`).join(''))
   .replaceAll('{{DAILY_COUNT_WORD}}', N[games.filter((g) => g.daily).length] || String(games.filter((g) => g.daily).length))
   .replaceAll('{{GAME_COUNT}}', String(games.length))
@@ -123,7 +129,7 @@ if (/\{\{[A-Z_]+\}\}/.test(html)) throw new Error(`Unfilled placeholder in index
 
 // ---- static files
 for (const e of fs.readdirSync(path.join(ROOT, 'site'), { withFileTypes: true })) {
-  if (e.name === 'index.template.html') continue
+  if (e.name === 'index.template.html' || e.name === 'pages') continue
   const s = path.join(ROOT, 'site', e.name), d = path.join(DIST, e.name)
   if (e.isDirectory()) copyDir(s, d, false)
   else fs.copyFileSync(s, d)
@@ -132,7 +138,14 @@ copyDir(path.join(ROOT, 'kit'), path.join(DIST, 'kit'), false)
 fs.rmSync(path.join(DIST, 'kit', 'template.html'), { force: true })
 fs.writeFileSync(path.join(DIST, 'index.html'), html)
 
+// ---- sub-pages: privacy, what's new + RSS
+const YEAR = new Date().getFullYear()
+fs.mkdirSync(path.join(DIST, 'privacy'), { recursive: true })
+fs.writeFileSync(path.join(DIST, 'privacy', 'index.html'), subPage({ slug: 'privacy', title: 'Privacy', description: 'What Oddvale Games keeps and where: progress in your browser, anonymous counts on our server, nothing about you.', body: fs.readFileSync(path.join(ROOT, 'site', 'pages', 'privacy.html'), 'utf8'), year: YEAR }))
+const told = fs.existsSync(path.join(ROOT, 'you-told-us.json')) ? JSON.parse(fs.readFileSync(path.join(ROOT, 'you-told-us.json'), 'utf8')).notes || [] : []
+writeWhatsNew(DIST, changes, told, YEAR)
+
 const today = new Date().toISOString().slice(0, 10)
-fs.writeFileSync(path.join(DIST, 'sitemap.xml'), `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${[{ loc: `${ORIGIN}/`, mod: today }, ...games.map((g) => ({ loc: `${ORIGIN}/${g.slug}/`, mod: g.updated }))].map((u) => `  <url><loc>${u.loc}</loc><lastmod>${u.mod}</lastmod></url>`).join('\n')}\n</urlset>\n`)
+fs.writeFileSync(path.join(DIST, 'sitemap.xml'), `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${[{ loc: `${ORIGIN}/`, mod: today }, { loc: `${ORIGIN}/whats-new/`, mod: today }, { loc: `${ORIGIN}/privacy/`, mod: today }, ...games.map((g) => ({ loc: `${ORIGIN}/${g.slug}/`, mod: g.updated }))].map((u) => `  <url><loc>${u.loc}</loc><lastmod>${u.mod}</lastmod></url>`).join('\n')}\n</urlset>\n`)
 fs.writeFileSync(path.join(DIST, 'games.json'), JSON.stringify({ games }, null, 2))
 console.log(`Built ${games.length} ${games.length === 1 ? 'game' : 'games'} + hub into dist/`)

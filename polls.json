@@ -1,0 +1,18 @@
+{
+  "_readme": "Owner polls shown on the games.oddvale.com home page. A poll is served and counted only when \"approved\" is true, and only between opens and closes (UTC dates, inclusive). The owner approves a question by setting approved to true (or by saying so to the agent who commits it). Choices are fixed; ids are lowercase. After editing, redeploy the API (npm run api:deploy) and the site (npm run deploy).",
+  "polls": [
+    {
+      "id": "2026-12-next-game",
+      "question": "Which game should the robots build next?",
+      "choices": [
+        { "id": "sift", "label": "Sift: pour falling sand through parts you place, a new puzzle daily" },
+        { "id": "teeter", "label": "Teeter: balance hanging mobiles for picky robots, a new puzzle daily" },
+        { "id": "word", "label": "Another word game" },
+        { "id": "more-levels", "label": "No new game: more levels for the ones we have" }
+      ],
+      "opens": "2026-12-01",
+      "closes": "2026-12-31",
+      "approved": false
+    }
+  ]
+}

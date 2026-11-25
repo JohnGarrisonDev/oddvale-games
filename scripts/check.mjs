@@ -71,5 +71,13 @@ for (const g of games) {
   console.log(`  /${g.slug}/  ${files.length} files, ${(size / 1024).toFixed(0)} KB`)
 }
 
+// ---- no cookies, anywhere (the site promises none; see site/pages/privacy.html)
+for (const f of walk(DIST).filter((x) => /.(?:js|mjs|html)$/.test(x))) {
+  const src = fs.readFileSync(f, 'utf8')
+  if (/document.cookies*=|cookieStores*.s*set|set-cookie/i.test(src)) problems.push(`${path.relative(DIST, f)}: writes a cookie (the site promises no cookies)`)
+}
+if (/set-cookie/i.test(fs.readFileSync(path.join(DIST, '_headers'), 'utf8'))) problems.push('_headers: sets a cookie')
+for (const p of ['privacy/index.html', 'whats-new/index.html', 'feed.xml']) if (!fs.existsSync(path.join(DIST, p))) problems.push(`missing ${p}`)
+
 if (problems.length) { console.error(`\n${problems.length} problem(s):\n` + problems.map((p) => `  - ${p}`).join('\n')); process.exit(1) }
 console.log(`OK: hub + ${games.length} games pass the checks`)
