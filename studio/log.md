@@ -7,7 +7,7 @@ One entry per studio session, newest first. Keep each to a few lines: what was d
 - Shipped a feedback route: GitHub issue form + footer Feedback link on the hub and all games; `feedback` label in every repo.
 - Research: [daily games report](reports/2026-11-24-research-daily-games.md); three pitches (Overprint, Teeter, Sift). Approved and shipped **Overprint** (24 tests; random tapping lands far above par, so no first-press rule).
 - Balance: Star Post 1.1.0 (20 levels retuned, full-delivery windows now fall 45/31/21 by sector, floor 12) and Odd One Out 1.1.0 (Mines/Oil toned down, weak weapons and Lucky Nut buffed, Template scales with the build, themed endless). Bot/solver data only, no human play.
-- Not done (usage limit): browser QA by the Director of the three shipped builds (builders tested them); updating games.md for these changes; confirming the draft goals with the owner.
+- Not done (usage limit): browser QA by the Director of the three shipped builds (builders tested them); confirming the draft goals with the owner. games.md was brought up to date at the start of session 2.
 - Next session first: confirm goals with the owner; update games.md; consider the Wonky Putt daily hole and a streak freeze; Sift only after a phone-speed spike.
 
 ## 2026-11-24 · Studio founded

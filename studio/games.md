@@ -2,7 +2,14 @@
 
 One section per live game. Update it whenever a game ships a change, a report finds something, or a weak spot is fixed. "Weak spots" come from build and QA reports and must stay honest; delete a line only when it is fixed and verified.
 
-All eight launched on 2026-11-24, built by AI subagents and reviewed in a browser before shipping. None has been played at length by a person yet, and none has had its sound heard or been tried on a real phone.
+All nine launched on 2026-11-24, built by AI subagents and reviewed in a browser before shipping. None has been played at length by a person yet, and none has had its sound heard or been tried on a real phone.
+
+## Overprint
+`overprint` · Word puzzle · daily · Easy (2) · v1.0.0 · [repo](https://github.com/JohnGarrisonDev/overprint)
+- Turn and restack punched printer-robot cards until every row is a word. Daily Small 4x4 + Large 5x5 (5 cards on Sundays), par rising through the week, 60-sheet journey, free play, 14-day archive, Gazette ending. A brute-force solver proves each daily has exactly one answer.
+- Data: random tapping needs about 57x par on Small (median 294 moves vs par 5), so no "first press counts" rule. Sunday solve takes under 60 ms.
+- Weak spots: tray mini-cards are tiny on phones with 5 cards; stamps fire on obscure ENABLE words (e.g. MERK); some curated words are bookish or British; no 7-day human playtest yet.
+- Next: human playtest of a week of dailies.
 
 ## Lookout
 `lookout` · Logic puzzle · daily · Medium (3) · v1.0.0 · [repo](https://github.com/JohnGarrisonDev/lookout)
@@ -29,17 +36,18 @@ All eight launched on 2026-11-24, built by AI subagents and reviewed in a browse
 - Next: human playtest of levels 3-24; tighten loose pars.
 
 ## Star Post
-`star-post` · Gravity physics · daily · Hard (4) · v1.0.1 · [repo](https://github.com/JohnGarrisonDev/star-post)
+`star-post` · Gravity physics · daily · Hard (4) · v1.1.0 · [repo](https://github.com/JohnGarrisonDev/star-post)
 - One slingshot launch, then gravity curves the courier through mailbox rings to the dock. 30 levels, daily delivery.
-- Weak spots: full-delivery launch windows are tiny on levels 10, 18, 20, 28, 30; difficulty doesn't narrow steadily across sectors; tuned by solver only; Copy result unconfirmed.
-- Fixed: 1.0.1 stopped a canvas error when the stage was collapsed.
-- Next: widen the tightest windows; human playtest of sector 3.
+- Fixed: 1.0.1 stopped a canvas error when the stage was collapsed. 1.1.0 retuned 20 levels: full-delivery windows now fall steadily by sector (medians 45 / 31 / 21, was 26 / 29 / 17), floors 24 / 14 / 12, dock windows at least 60. Rebound, Bank Shot and Push and Pull now need their headline bodies. Daily unchanged; best times on retuned levels reset, stars kept.
+- Weak spots: Bulk Mail (14), Night Shift, The Long Way Round and Last Post (14-16) sit near the floor; Last Post's best line has a local window of only 2.7; some pars moved a lot (Threading 4.5 to 3, Push and Pull 4 to 6); tuned by solver only; Copy result unconfirmed; phone width not rechecked after 1.1.0.
+- Next: human playtest of sector 3.
 
 ## Odd One Out
-`odd-one-out` · Arcade survival · Hard (4) · v1.0.0 · [repo](https://github.com/JohnGarrisonDev/odd-one-out)
+`odd-one-out` · Arcade survival · Hard (4) · v1.1.0 · [repo](https://github.com/JohnGarrisonDev/odd-one-out)
 - Survive ten minutes of identical robots. 8 weapons, 10 parts, 3 bosses, workshop meta-upgrades, endless mode.
-- Weak spots: never played in real time (bot-tuned: novice bot median 2:53); Bolt Mines is the strongest weapon; endless mode turns unfair rather than interesting; final boss health doesn't scale with the build; no music.
-- Next: real-time feel pass; rebalance Bolt Mines; scale the final boss.
+- 1.1.0 (bot data, 96 runs per setup): Bolt Mines and Hot Oil toned down (damage share when held 42-43% to 29-30%, Oil 40-43% to 28-33%), Gears/Pulse/Wrench buffed from level 3, Lucky Nut buffed. The Template scales its HP to the player's damage rate (0.4-1.6x), so the fight-length spread narrowed (p75/p25 from about 3.5 to about 2.2). Endless now has themed waves, elite packs and returning bosses. Novice median unchanged (2:53 to 2:50); full-workshop good bot beats the Template 72/96 (was 56). Saves untouched.
+- Weak spots: never played in real time; Template fights still range about 30-120 s (the bot runs from bosses); Oil and Mines still lead by a few points, Wrench weakest with a full workshop; Lucky Nut buff not re-measured; phone width not rechecked after 1.1.0; no music.
+- Next: real-time feel pass by a person.
 
 ## Wonky Putt
 `wonky-putt` · Mini golf · Easy (2) · v1.0.0 · [repo](https://github.com/JohnGarrisonDev/wonky-putt)
