@@ -93,7 +93,7 @@ Give a builder: the game's slug, folder and test port; a link to GAME_GUIDE.md a
 
 | What | Where | Status |
 |---|---|---|
-| Page views per game per day | `npm run analytics` (Cloudflare GraphQL, edge request logs; no script on the page) | Needs the Cloudflare API token to have **Zone → Analytics → Read** for oddvale.com. As of 2026-11-24 it does not, so the script stops with a clear message. |
+| Page views per game per day | `npm run analytics` (Cloudflare GraphQL, edge request logs; no script on the page) | Needs the Cloudflare API token to have **Zone → Analytics → Read** for oddvale.com. Works since 2026-11-25 (token `oddvale-games-deploy` in the hub's `.env`). |
 | Player feedback | GitHub issues on `oddvale-games` and each game repo, filed through the "Feedback" link in every page footer (an issue form with kind, details, where, device, browser) and labelled `feedback` | Works. Players need a GitHub account to file one. No issues yet as of 2026-11-24. |
 | In-game behaviour (levels reached, daily completion, retention) | Nothing today | Would need on-page measurement, which the "Ask first" list covers. Without it, use page views and feedback. |
 | Build health | `npm run build:local && npm run check`, each game's `node --test tests/` | Works. |

@@ -18,15 +18,14 @@ const args = process.argv.slice(2)
 const days = Math.max(1, Math.min(30, Number(args[args.indexOf('--days') + 1]) || 7))
 const write = args.includes('--write')
 
-// Credentials: environment first, then the same .env files cf.mjs reads.
-let token = process.env.CLOUDFLARE_API_TOKEN
-if (!token) {
-  for (const f of [path.join(ROOT, '.env'), path.resolve(ROOT, '../../Oddvale/.env')]) {
-    if (!fs.existsSync(f)) continue
-    const m = fs.readFileSync(f, 'utf8').match(/^\s*CLOUDFLARE_API_TOKEN\s*=\s*["']?([^"'\r\n]+)/m)
-    if (m) { token = m[1]; break }
-  }
+// Credentials: a .env file wins over the environment (same order as cf.mjs), so a fresh token in .env is used.
+let token
+for (const f of [path.join(ROOT, '.env'), path.resolve(ROOT, '../../Oddvale/.env')]) {
+  if (!fs.existsSync(f)) continue
+  const m = fs.readFileSync(f, 'utf8').match(/^\s*CLOUDFLARE_API_TOKEN\s*=\s*["']?([^"'\r\n]+)/m)
+  if (m) { token = m[1]; break }
 }
+token ||= process.env.CLOUDFLARE_API_TOKEN
 if (!token) { console.error('No CLOUDFLARE_API_TOKEN in the environment or .env'); process.exit(1) }
 const H = { Authorization: `Bearer ${token}`, 'Content-Type': 'application/json' }
 

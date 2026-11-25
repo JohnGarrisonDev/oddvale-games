@@ -11,7 +11,7 @@ ALLOWED_ORIGINS = "https://games.oddvale.com"
 [[d1_databases]]
 binding = "DB"
 database_name = "oddvale-games-api"
-database_id = "REPLACE_AFTER_d1_create"
+database_id = "39234c35-9f1e-414c-9251-ef79f4d68ce9"
 
 # Rate limits count per client IP (IPv6 grouped by /64) in Cloudflare's memory. Nothing is written down.
 [[ratelimits]]

@@ -9,10 +9,10 @@ These are the first draft, set when the studio was created. The first studio ses
 
 1. **See how the arcade is used.** Get a weekly page-view report per game working, then record a four-week baseline.
    - Measured by: `npm run analytics` runs and `reports/` has its first analytics report.
-   - Blocked on: the Cloudflare API token needs Zone Analytics Read (owner action).
+   - Unblocked 2026-11-25: the new token has Analytics Read and `npm run analytics` works. Next: write the first report in `reports/`.
    - Due: 2026-12-08.
 2. **Hear from players.** Make giving feedback easy and start a regular feedback report.
-   - Measured by: a clear "Feedback" route on the hub and game pages (GitHub issue form shipped 2026-11-24), and a first `reports/*-feedback.md`. Phase 0 of [the player-input plan](meetings/2026-11-25-player-input-and-odd-account/plan.md) approved 2026-11-25 and built (Tell us taps, difficulty votes, polls); the API goes live once the token can deploy Workers and D1.
+   - Measured by: a clear "Feedback" route on the hub and game pages (GitHub issue form shipped 2026-11-24), and a first `reports/*-feedback.md`. Phase 0 of [the player-input plan](meetings/2026-11-25-player-input-and-odd-account/plan.md) approved 2026-11-25 and built (Tell us taps, difficulty votes, polls); the API went live the same day.
    - Due: 2026-12-15.
 3. **Make the eight launch games feel right to humans.** Every game so far was tuned by tests and bots, not people.
    - Measured by: a human or careful real-time playtest of each game, findings in `games.md`, and fixes shipped for the worst problem in each of Star Post, Rickety and Odd One Out (the three rated Medium or harder that were least hand-played).
