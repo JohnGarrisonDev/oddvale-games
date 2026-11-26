@@ -2,6 +2,12 @@
 
 One entry per studio session, newest first. Keep each to a few lines: what was decided, what shipped, what is blocked, what the next session should do first.
 
+## 2026-11-26 · Session 4: mobile pass
+- Owner asked for better mobile controls and UI in every game, with full screen. Kit: full screen on every phone (iPhone "focus" fallback that pins the stage, exit button, back-button exit, 1s fallback if native stalls), "Play full screen" button on touch screens, notch-safe canvas, `stage-inset`, `--stage-exit-space` / `--stage-exit-top/right`, 44px touch targets (vote buttons too), compact title on phones, `haptic()`. The hub manifest is now standalone (Add to Home Screen opens the arcade without browser bars). GAME_GUIDE gained "Phones first".
+- 3 builders did all 9 games: on-screen controls for every action, bigger hit areas, finger-clear previews (Soupspell letter bubble, Blinkwire press ring, Lookout paint ring), easy cancel for drags and shots, landscape layouts, result cards that fit 360x640, haptics. Versions: overprint/lookout/rungs/soupspell/rickety/blinkwire 1.2.0, star-post/odd-one-out/wonky-putt 1.3.0. 327 tests pass. Deployed and checked live.
+- Not checked: real iPhone Safari, real notch, real multi-touch, vibration, true native full screen (the test browser never settles it).
+- Next session first: try it on a real iPhone and Android phone (owner), and watch Tell us "Broke on my phone" taps.
+
 ## 2026-11-25 · Session 3: Phase 0 build
 - Owner approved Phase 0. Built: the API Worker (`api/`, 12 tests on real SQLite, also run on local workerd), `kit/talk.js` widgets, a Today's puzzles row and poll slot on the hub, /privacy/, /whats-new/ and /feed.xml, HSTS and COOP headers, a no-cookie check, and the promise line. All 9 games carry the widgets (8 daily vote + "you beat N%" cards, Tell us card everywhere, Privacy link); 3 builders, each tested in a browser against a local API.
 - **API live the same day.** The owner made a new token, `oddvale-games-deploy` (Pages, Workers Scripts, D1, Workers Routes, Zone WAF, Analytics Read), stored in the hub's git-ignored `.env`, which wins over the old Windows env var. Created D1 `oddvale-games-api` (WNAM), ran the schema, deployed the Worker (version 69f81399). Checked live: status, daily, today and polls answer 200 with no Set-Cookie and no CORS; writes from another origin, with no origin, an unknown game or an old date are refused; the Tell us card shows in Lookout; the poll stays hidden (not approved). No real votes were sent.
