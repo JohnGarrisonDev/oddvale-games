@@ -7,7 +7,7 @@ Oddvale Games (games.oddvale.com) hosts browser games that are designed, built a
 2. **Relative URLs only.** The game is served from a sub-folder (`/<slug>/`), so never start a URL with `/`. The link back to the hub is `../`.
 3. **No external requests.** No analytics, fonts, scripts or images from other hosts. No cookies. The hub sends a strict Content-Security-Policy (`default-src 'self'`; inline styles allowed, inline scripts and `eval` not).
 4. **Save with localStorage only**, in one JSON blob under the key `oddvale:<slug>` (use `makeStore` from the kit). There are no accounts. Handle missing or broken save data without crashing.
-5. **Works with mouse, keyboard and touch**, from a 360px-wide phone to a desktop monitor. The game must be fully playable on a phone, portrait included.
+5. **Works with mouse, keyboard and touch**, from a 360px-wide phone to a desktop monitor. The game must be fully playable on a phone, portrait included, and in full screen. See "Phones first" below.
 6. **Original work only.** Genres and mechanics are fine to borrow. Names, characters, art, music or level layouts from existing games are not.
 7. **Pause when hidden.** Stop the simulation when the tab is hidden (`visibilitychange`) and clamp frame delta time, so nobody dies while in another tab.
 8. **Say it's AI-made.** The page carries the standard "Made by AI, in the open" card and a GitHub link in the top bar.
@@ -63,10 +63,14 @@ CHANGELOG.md      one entry per version, newest first, written for players
 - `fitCanvas(canvas)` for crisp canvases at device pixel ratio
 - `makeRng(seed)` and `hashString(str)` for seeded randomness (daily challenges)
 - `sfx.tone / sfx.noise / sfx.tune` for synthesised sound effects (no audio files needed), with a mute state shared by all Oddvale games
-- `wireChrome({ stage })` to hook up the mute and full-screen buttons in the top bar
+- `wireChrome({ stage, orientation })` to hook up the mute and full-screen buttons. Full screen works on every phone: the Fullscreen API where it exists, and on iPhone a "focus" mode that pins the stage over the page. Both add `.stage.is-full`, put a 44px exit button (`.stage-exit`) in the stage's top-right, and fire `oddvale:fullscreen` on the stage. Touch screens also get a "Play full screen" button under the stage. Optional `orientation` ('portrait' or 'landscape') locks it in native full screen on Android.
+- `haptic(pattern)` for a short vibration on key moments (Android; silent when muted)
 - `drawOddFace(ctx, x, y, size, opts)` to draw the Oddvale face (big orange eye, small dot eye, V smile)
 
-Set the stage shape per game in `src/game.css`, e.g. `.stage { --stage-ratio: 16 / 9; --stage-ratio-n: 1.7778; }` and switch to a taller ratio on narrow screens with a media query. Everything the player needs during play (menus, HUD, pause, game over) goes inside `.stage` so full screen works.
+Set the stage shape per game in `src/game.css`, e.g. `.stage { --stage-ratio: 16 / 9; --stage-ratio-n: 1.7778; }` and switch to a taller ratio on narrow screens with a media query. Everything the player needs during play (menus, HUD, pause, game over) goes inside `.stage` so full screen works. Lay out from the stage's size (a `ResizeObserver`), never the window, so full screen in portrait and landscape both use the space. In full screen the canvas is kept clear of notches and the home bar; DOM overlays at the stage edges must use `env(safe-area-inset-*)` themselves, and stay clear of the exit button.
+
+### Phones first
+Most players are on phones. Every action has an on-screen control of at least 44px (no keyboard-only undo, hint or restart). The finger never hides what matters: lift dragged pieces above the finger and keep aim lines away from the thumb. No page scroll, zoom, text selection or long-press menu while playing, and `pointercancel` is handled. Result cards fit a 360x640 screen. Test at 360x640, 390x844 and 844x390 landscape, in the page and in full screen, with both full-screen paths (to test the iPhone one in a desktop browser, set `stage.requestFullscreen = undefined` first).
 
 ## Look and feel
 Oddvale's brand is a playful print look: warm cream paper `#FBF6EC`, plum-black ink `#17131F`, odd orange `#FF5B2E`, sun yellow `#FFC93C`, mint `#2FD6A3`, electric blue `#5B5BFF`, bubblegum pink `#FF8FC7`. Flat shapes, 2px+ ink outlines, hard offset shadows (no blur), big rounded corners, things tilted a degree or two. Headlines in Fraunces (soft, wonky, 800), body in Figtree, labels in DM Mono uppercase.
