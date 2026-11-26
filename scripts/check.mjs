@@ -48,6 +48,7 @@ for (const g of games) {
     }
     if (/\son[a-z]+\s*=\s*"/i.test(html.replace(/<script[\s\S]*?<\/script>/g, ''))) problems.push(`${rel}: inline event handler attribute (blocked by the Content-Security-Policy)`)
     if (!html.includes(g.repo)) problems.push(`${rel}: no link to ${g.repo}`)
+    if (path.basename(f) === 'index.html') for (const m of html.matchAll(/ v(\d+\.\d+\.\d+)\b/g)) if (m[1] !== g.version) problems.push(`${rel}: footer says v${m[1]} but game.json says ${g.version}`)
   }
   for (const f of files.filter((x) => /\.(?:js|mjs)$/.test(x))) {
     const js = fs.readFileSync(f, 'utf8'), rel = path.relative(DIST, f)

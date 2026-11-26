@@ -1,40 +1,59 @@
 {
+  "_seo": "seoTitle and seoDescription (at most 160 characters) replace the game page's <title> and meta description at build time, so search results say what each game is. The game repo's own text stays as the fallback.",
   "games": [
     {
       "slug": "overprint",
-      "repo": "https://github.com/JohnGarrisonDev/overprint"
+      "repo": "https://github.com/JohnGarrisonDev/overprint",
+      "seoTitle": "Overprint – Free Daily Word Puzzle | Oddvale Games",
+      "seoDescription": "Turn and restack punched cards until every row spells a word. Two new solver-checked puzzles a day, a 60-sheet journey and free play. Free, no ads."
     },
     {
       "slug": "lookout",
-      "repo": "https://github.com/JohnGarrisonDev/lookout"
+      "repo": "https://github.com/JohnGarrisonDev/lookout",
+      "seoTitle": "Lookout – Free Daily Logic Puzzle | Oddvale Games",
+      "seoDescription": "Plant hedges so every robot lookout sees exactly its number. Three new logic grids a day, a 40-level journey and hints that explain why. Free, no ads."
     },
     {
       "slug": "rungs",
-      "repo": "https://github.com/JohnGarrisonDev/rungs"
+      "repo": "https://github.com/JohnGarrisonDev/rungs",
+      "seoTitle": "Rungs – Free Daily Word Ladder Puzzle | Oddvale Games",
+      "seoDescription": "Change one letter at a time to climb from one word to another. Three new word ladders every day, a 60-ladder journey and endless practice. Free, no ads."
     },
     {
       "slug": "soupspell",
-      "repo": "https://github.com/JohnGarrisonDev/soupspell"
+      "repo": "https://github.com/JohnGarrisonDev/soupspell",
+      "seoTitle": "Soupspell – Daily Alphabet Soup Word Game | Oddvale Games",
+      "seoDescription": "Stir floating letters together and trace touching ones to spell words. A new Daily Bowl for everyone, a 90-second Rush and endless Zen. Free, no ads."
     },
     {
       "slug": "rickety",
-      "repo": "https://github.com/JohnGarrisonDev/rickety"
+      "repo": "https://github.com/JohnGarrisonDev/rickety",
+      "seoTitle": "Rickety – Bridge Building Physics Puzzle | Oddvale Games",
+      "seoDescription": "Build a bridge on a budget, then watch a robot cart cross it, or not. 24 levels, a new canyon every day where the cheapest bridge wins, and a sandbox."
     },
     {
       "slug": "star-post",
-      "repo": "https://github.com/JohnGarrisonDev/star-post"
+      "repo": "https://github.com/JohnGarrisonDev/star-post",
+      "seoTitle": "Star Post – Gravity Slingshot Puzzle | Oddvale Games",
+      "seoDescription": "One launch, then gravity curves your robot courier through every mailbox to the dock. 30 hand-built star systems and a new daily delivery. Free, no ads."
     },
     {
       "slug": "odd-one-out",
-      "repo": "https://github.com/JohnGarrisonDev/odd-one-out"
+      "repo": "https://github.com/JohnGarrisonDev/odd-one-out",
+      "seoTitle": "Odd One Out – Robot Survival Arcade Game | Oddvale Games",
+      "seoDescription": "Steer the one mismatched robot through endless crowds while your gadgets fire on their own. Survive 10 minutes, beat the bosses, upgrade between runs."
     },
     {
       "slug": "wonky-putt",
-      "repo": "https://github.com/JohnGarrisonDev/wonky-putt"
+      "repo": "https://github.com/JohnGarrisonDev/wonky-putt",
+      "seoTitle": "Wonky Putt – Mini Golf with a Daily Hole | Oddvale Games",
+      "seoDescription": "Mini golf on 18 wonky holes of windmills, portals, bumpers and thin ice. Beat par for stars and take one shot at a new daily hole every day. Free, no ads."
     },
     {
       "slug": "blinkwire",
-      "repo": "https://github.com/JohnGarrisonDev/blinkwire"
+      "repo": "https://github.com/JohnGarrisonDev/blinkwire",
+      "seoTitle": "Blinkwire – Daily Wire Rotation Puzzle | Oddvale Games",
+      "seoDescription": "Rotate wire tiles until every sleepy eye joins the Big Eye. A new daily board with streaks, a 60-level journey and free play up to 12x12. Free, no ads."
     }
   ]
 }

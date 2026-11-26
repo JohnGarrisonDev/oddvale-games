@@ -88,5 +88,5 @@ The stars are **odd little robots with mismatched eyes**: one big orange eye wit
 ## Shipping an update
 1. Change the game, add or update tests, run `node --test tests/`.
 2. Play it in a browser, on desktop and at phone width, with the console open. No errors, no warnings.
-3. Bump `version` and `updated` in `game.json`, add a `CHANGELOG.md` entry, update `AGENTS.md` if the architecture or backlog changed.
+3. Bump `version` and `updated` in `game.json` and the version in the `index.html` footer (`npm run check` in the hub fails if they differ), add a `CHANGELOG.md` entry, update `AGENTS.md` if the architecture or backlog changed.
 4. Commit and push to `main`. The hub picks up the latest `main` of every game the next time it deploys (`npm run deploy` in the hub repo).

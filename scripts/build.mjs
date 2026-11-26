@@ -61,6 +61,7 @@ fs.rmSync(DIST, { recursive: true, force: true })
 fs.mkdirSync(DIST, { recursive: true })
 const games = []
 const changes = []
+const seo = new Map()
 for (const entry of registry.games) {
   const { dir, from } = fetchGame(entry)
   const meta = JSON.parse(fs.readFileSync(path.join(dir, 'game.json'), 'utf8'))
@@ -74,9 +75,61 @@ for (const entry of registry.games) {
   for (const f of ['index.html', meta.cover]) if (!fs.existsSync(path.join(dir, f))) throw new Error(`${entry.slug} has no ${f}`)
   copyDir(dir, path.join(DIST, entry.slug))
   games.push(meta)
+  seo.set(meta.slug, { title: entry.seoTitle, description: entry.seoDescription })
   const cl = path.join(dir, 'CHANGELOG.md')
   if (fs.existsSync(cl)) for (const e of parseChangelog(fs.readFileSync(cl, 'utf8'))) changes.push({ game: meta, ...e })
   console.log(`+ /${entry.slug}/  v${meta.version}  (${from})`)
+}
+
+// ---- search and sharing polish for each game page (dist copy only; the game repo is untouched)
+// Descriptive <title> and description from games.json, a 1200x630 JPEG share card cut from the cover,
+// per-game JSON-LD, and a "Try next" card linking three related games.
+const sharp = (await import('sharp')).default
+const related = (g) => games.filter((o) => o.slug !== g.slug)
+  .map((o, i) => ({ o, score: o.kinds.filter((k) => g.kinds.includes(k)).length * 2 + (o.daily && g.daily ? 1 : 0), i }))
+  .sort((a, b) => b.score - a.score || a.i - b.i).slice(0, 3).map((r) => r.o)
+for (const g of games) {
+  const file = path.join(DIST, g.slug, 'index.html')
+  const s = seo.get(g.slug) || {}
+  const title = s.title || `${g.title} — Oddvale Games`
+  const description = s.description || g.description
+  if (description.length > 160) console.warn(`! ${g.slug}: description is ${description.length} characters (search engines show about 160)`)
+  await sharp(path.join(DIST, g.slug, g.cover)).resize(1200, 630, { fit: 'cover', position: 'centre' }).jpeg({ quality: 82, mozjpeg: true }).toFile(path.join(DIST, g.slug, 'og.jpg'))
+  const url = `${ORIGIN}/${g.slug}/`
+  const ld = {
+    '@context': 'https://schema.org',
+    '@graph': [
+      { '@type': ['VideoGame', 'WebApplication'], '@id': `${url}#game`, name: g.title, url, description, genre: g.genre, image: `${url}og.jpg`, inLanguage: 'en', isAccessibleForFree: true, gamePlatform: 'Web browser', applicationCategory: 'GameApplication', operatingSystem: 'Any', softwareVersion: g.version, dateModified: g.updated, ...(g.released ? { datePublished: g.released } : {}), offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD' }, codeRepository: g.repo, isPartOf: { '@id': `${ORIGIN}/#site` }, publisher: { '@type': 'Organization', name: 'Oddvale', url: 'https://oddvale.com' } },
+      { '@type': 'BreadcrumbList', itemListElement: [{ '@type': 'ListItem', position: 1, name: 'Oddvale Games', item: `${ORIGIN}/` }, { '@type': 'ListItem', position: 2, name: g.title, item: url }] },
+    ],
+  }
+  const tryNext = `\n      <section class="info try-next" aria-label="More games">\n        <div class="card"><h2>Try next</h2><ul>${related(g).map((o) => `<li><a href="../${esc(o.slug)}/"><b>${esc(o.title)}</b></a>: ${esc(o.tagline)}</li>`).join('')}</ul><p><a href="../">All ${games.length} games</a></p></div>\n      </section>\n`
+  let html = fs.readFileSync(file, 'utf8')
+  const setMeta = (attr, key, value) => {
+    const re = new RegExp(`<meta ${attr}="${key}" content="[^"]*"\\s*/?>`)
+    const tag = `<meta ${attr}="${key}" content="${esc(value)}" />`
+    html = re.test(html) ? html.replace(re, tag) : html.replace('</head>', `  ${tag}\n</head>`)
+  }
+  html = html.replace(/<title>[^<]*<\/title>/, `<title>${esc(title)}</title>`)
+  setMeta('name', 'description', description)
+  setMeta('property', 'og:site_name', 'Oddvale Games')
+  setMeta('property', 'og:title', title)
+  setMeta('property', 'og:description', description)
+  setMeta('property', 'og:image', `${url}og.jpg`)
+  setMeta('property', 'og:image:width', '1200')
+  setMeta('property', 'og:image:height', '630')
+  setMeta('property', 'og:image:alt', g.coverAlt)
+  setMeta('name', 'twitter:card', 'summary_large_image')
+  setMeta('name', 'twitter:title', title)
+  setMeta('name', 'twitter:description', description)
+  setMeta('name', 'twitter:image', `${url}og.jpg`)
+  html = html.replace('</head>', `  <script type="application/ld+json">${JSON.stringify(ld).replace(/</g, '\\u003c')}</script>\n</head>`)
+  // after the game's own info cards, inside the page's .wrap
+  const at = html.lastIndexOf('</main>')
+  const wrapEnd = at < 0 ? -1 : html.lastIndexOf('</div>', at)
+  if (wrapEnd < 0) console.warn(`! ${g.slug}: no </main> found, skipped Try next`)
+  else html = html.slice(0, wrapEnd) + tryNext + '    ' + html.slice(wrapEnd)
+  fs.writeFileSync(file, html)
 }
 
 // ---- hub page
@@ -145,7 +198,12 @@ fs.writeFileSync(path.join(DIST, 'privacy', 'index.html'), subPage({ slug: 'priv
 const told = fs.existsSync(path.join(ROOT, 'you-told-us.json')) ? JSON.parse(fs.readFileSync(path.join(ROOT, 'you-told-us.json'), 'utf8')).notes || [] : []
 writeWhatsNew(DIST, changes, told, YEAR)
 
-const today = new Date().toISOString().slice(0, 10)
-fs.writeFileSync(path.join(DIST, 'sitemap.xml'), `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${[{ loc: `${ORIGIN}/`, mod: today }, { loc: `${ORIGIN}/whats-new/`, mod: today }, { loc: `${ORIGIN}/privacy/`, mod: today }, ...games.map((g) => ({ loc: `${ORIGIN}/${g.slug}/`, mod: g.updated }))].map((u) => `  <url><loc>${u.loc}</loc><lastmod>${u.mod}</lastmod></url>`).join('\n')}\n</urlset>\n`)
+// lastmod is when the page's content really changed, not the build date
+const newest = (dates) => dates.filter(Boolean).sort().at(-1)
+const gitDate = (file) => { try { return git(['log', '-1', '--format=%cs', '--', file], ROOT) || undefined } catch { return undefined } }
+const hubMod = newest([...games.map((g) => g.updated), gitDate('site/index.template.html')])
+const newsMod = newest([...changes.map((c) => c.date), hubMod])
+const privacyMod = gitDate('site/pages/privacy.html') || hubMod
+fs.writeFileSync(path.join(DIST, 'sitemap.xml'), `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${[{ loc: `${ORIGIN}/`, mod: hubMod }, { loc: `${ORIGIN}/whats-new/`, mod: newsMod }, { loc: `${ORIGIN}/privacy/`, mod: privacyMod }, ...games.map((g) => ({ loc: `${ORIGIN}/${g.slug}/`, mod: g.updated }))].map((u) => `  <url><loc>${u.loc}</loc><lastmod>${u.mod}</lastmod></url>`).join('\n')}\n</urlset>\n`)
 fs.writeFileSync(path.join(DIST, 'games.json'), JSON.stringify({ games }, null, 2))
 console.log(`Built ${games.length} ${games.length === 1 ? 'game' : 'games'} + hub into dist/`)
